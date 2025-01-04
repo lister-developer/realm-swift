@@ -157,16 +157,10 @@ let package = Package(
             name: "Realm",
             type: .dynamic,
             targets: ["Realm"]),
-            swiftSettings: [
-                .define("REALM_DISABLE_ANALYTICS")
-            ]
         .library(
             name: "RealmSwift",
             type: .dynamic,
             targets: ["RealmSwift"]),
-            swiftSettings: [
-                .define("REALM_DISABLE_ANALYTICS")
-            ]
     ],
     dependencies: [
         .package(url: "https://github.com/realm/realm-core.git", exact: coreVersion)
@@ -174,6 +168,9 @@ let package = Package(
     targets: [
       .target(
             name: "Realm",
+            swiftSettings: [
+                .define("REALM_DISABLE_ANALYTICS")
+            ],
             dependencies: [.product(name: "RealmCore", package: "realm-core")],
             path: ".",
             exclude: [
@@ -287,6 +284,9 @@ let package = Package(
         ),
         .target(
             name: "RealmSwift",
+            swiftSettings: [
+                .define("REALM_DISABLE_ANALYTICS")
+            ],
             dependencies: ["Realm"],
             path: "RealmSwift",
             exclude: [
